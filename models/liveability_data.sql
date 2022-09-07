@@ -1,6 +1,9 @@
 {{ config(materialized='table') }}
 
 WITH final_liveability AS (
+{{ config(materialized='table') }}
+
+WITH final_liveability AS (
 
   WITH choices AS (
   	SELECT SPLIT(ui2.user_interests,',') as OPTION
@@ -18,8 +21,7 @@ WITH final_liveability AS (
   		,ccare.address as address    
   		,ccare.city as city     
   		,ccare.postcode as postcode    
-  		,ccare.latitude as Latitude
-  		,ccare.longitude as longitude
+  		,ccare.latitude || "," || ccare.longitude as location
   	FROM transform_batchdata.childcarecentre ccare
   	UNION ALL
   	SELECT
@@ -29,8 +31,7 @@ WITH final_liveability AS (
   		,hosp.address as address    
   		,hosp.city as city     
   		,hosp.postcode as postcode    
-  		,hosp.latitude as Latitude
-  		,hosp.longitude as longitude
+  		,hosp.latitude || "," || hosp.longitude as location
   	FROM transform_batchdata.hospitals hosp
   	UNION ALL 
   	SELECT
@@ -40,8 +41,7 @@ WITH final_liveability AS (
   		,rel.address as address    
   		,rel.suburb as city     
   		,rel.postcode as postcode    
-  		,rel.latitude as Latitude
-  		,rel.longitude as longitude
+  		,rel.latitude || "," || rel.longitude as location
   	FROM transform_batchdata.religiousorganizations rel 
   	UNION ALL 
   	SELECT
@@ -51,8 +51,7 @@ WITH final_liveability AS (
   		,res.address as address    
   		,res.city as city     
   		,res.postcode as postcode    
-  		,res.latitude as Latitude
-  		,res.longitude as longitude
+  		,res.latitude || "," || res.longitude as location
   	FROM transform_batchdata.restaurants res 
   	UNION ALL 
   	SELECT
@@ -62,8 +61,7 @@ WITH final_liveability AS (
   		,sch.address as address    
   		,sch.city as city     
   		,sch.postcode as postcode    
-  		,sch.latitude as Latitude
-  		,sch.longitude as longitude
+  		,sch.latitude || "," || sch.longitude as location 
   	FROM transform_batchdata.schools sch
   	UNION ALL  
   	SELECT
@@ -73,8 +71,7 @@ WITH final_liveability AS (
   		,shop.address as adress
   		,shop.city as city
   		,shop.postcode as postcode
-  		,shop.latitude as latitude
-  		,shop.longitude as longitude
+  		,shop.latitude || "," || shop.longitude as location
   	FROM transform_batchdata.shoppingcentre shop
   	UNION ALL 
   	SELECT
@@ -84,8 +81,7 @@ WITH final_liveability AS (
   		,sport.address as adress
   		,sport.city as city
   		,sport.postcode as postcode
-  		,sport.latitude as latitude
-  		,sport.longitude as longitude
+  		,sport.latitude || "," || sport.longitude as location
   	FROM transform_batchdata.sportsclubs sport
   
   )
@@ -107,6 +103,10 @@ WITH final_liveability AS (
   		   FROM choices
   		  WHERE choices.rank_no2 = 1
   		) )
+)
+select * from final_liveability
+
+
 )
 select * from final_liveability
 
