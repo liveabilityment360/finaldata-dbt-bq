@@ -95,12 +95,12 @@ WHERE postcode = (
 						
 		SELECT LOCATION.Postcode
 		FROM LOCATION
-		WHERE LOCATION.RANK_NO1 = 5
+		WHERE LOCATION.RANK_NO1 = 1
 	)
 
 AND category IN UNNEST((SELECT CHOICES.OPTION 
 												FROM CHOICES
-												WHERE CHOICES.RANK_NO2 = 5
+												WHERE CHOICES.RANK_NO2 = 1
 												) )
 
 )
