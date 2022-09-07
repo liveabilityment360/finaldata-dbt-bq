@@ -1,9 +1,6 @@
 {{ config(materialized='table') }}
 
 WITH final_liveability AS (
-{{ config(materialized='table') }}
-
-WITH final_liveability AS (
 
   WITH choices AS (
   	SELECT SPLIT(ui2.user_interests,',') as OPTION
@@ -104,9 +101,5 @@ WITH final_liveability AS (
   		  WHERE choices.rank_no2 = 1
   		) )
 )
+
 select * from final_liveability
-
-
-)
-select * from final_liveability
-
