@@ -1,11 +1,11 @@
 {{ config(materialized='table') }}
 
 WITH final_liveability AS (
-WITH CHOICES AS (
-		SELECT SPLIT(ui2.What_are_you_interested_in_the_area,',') as OPTION
+WITH choices AS (
+		SELECT SPLIT(ui2.user_interests,',') as OPTION
 					,RANK() over (
-						ORDER BY ui2.Create_Date DESC
-								) AS RANK_NO2
+						ORDER BY ui2.created_date DESC
+								) AS rank_no2 
 								FROM `streamdata.user_input` ui2
 )
 
@@ -86,9 +86,9 @@ FROM
 )
 WHERE postcode = (
     WITH LOCATION AS (
-		SELECT  ui1.New_Postcode as Postcode			
+		SELECT  ui1.confirm_new_postcode as postcode			
 				   ,RANK() over (
-						 ORDER BY ui1.Create_Date DESC
+						 ORDER BY ui1.created_date DESC
       					) AS RANK_NO1
 								FROM `streamdata.user_input` ui1
 		)
