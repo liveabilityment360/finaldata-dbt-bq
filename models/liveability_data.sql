@@ -64,7 +64,7 @@ WITH final_liveability AS (
   	SELECT
   		 shop.name as name
   		,shop.categories as category
-		,'Pink' as cat_colour
+		,'White' as cat_colour
   		,shop.address as adress
   		,shop.city as city
   		,shop.postcode as postcode
