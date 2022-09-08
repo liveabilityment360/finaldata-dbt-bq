@@ -36,6 +36,8 @@ timeout: 1200s
 tags: ['dbt']
 options:
   logging: CLOUD_LOGGING_ONLY
+  pool:
+    name: 'projects/liveability-demo/locations/us-west1/workerPools/exp-pool'
 substitutions:
   _DBT_VERSION: '0.21.0'
   _DBT_TARGET: 'dev'
