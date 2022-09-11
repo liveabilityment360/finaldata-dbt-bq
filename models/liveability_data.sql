@@ -8,7 +8,7 @@ WITH final_liveability AS (
  	        ,RANK() over (
  		     ORDER BY ui3.created_date DESC
  		   ) AS rank_no3 
- 	    FROM `streamdata.user_input` ui3
+ 	    FROM `liveability.user_activity` ui3
   )
 
   SELECT ulive.name
