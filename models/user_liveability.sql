@@ -95,7 +95,7 @@ WITH users_liveability AS (
   		  ,RANK() OVER (
   		    ORDER BY ui1.created_date DESC
        		   ) AS rank_no1
-  	    FROM `liveability.user_activity` ui1
+  	    FROM `liveability.user_activity_sample` ui1
   	)	
   	SELECT location.Postcode
   	  FROM location
