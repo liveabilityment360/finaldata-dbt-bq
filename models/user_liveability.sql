@@ -91,9 +91,9 @@ WITH users_liveability AS (
   )
   WHERE postcode = (
     WITH location AS (
-  	  SELECT  ui1.confirm_new_postcode as postcode			
-  			  ,RANK() OVER (
-  				 ORDER BY ui1.created_date DESC
+  	  SELECT  CAST(ui1.confirm_new_postcode as INT) as postcode			
+  		  ,RANK() OVER (
+  		    ORDER BY ui1.created_date DESC
        		   ) AS rank_no1
   	    FROM `liveability.user_activity` ui1
   	)	
