@@ -41,7 +41,7 @@ WITH users_liveability AS (
   		,rel.suburb as city     
   		,rel.postcode as postcode    
   		,rel.latitude || "," || rel.longitude as concat_location
-	  	,hosp.location as location
+	  	,rel.location as location
   	FROM transform_batchdata.religiousorganizations rel 
   	UNION ALL 
   	SELECT
