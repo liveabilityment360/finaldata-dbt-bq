@@ -18,7 +18,8 @@ WITH users_liveability AS (
   		,ccare.address as address    
   		,ccare.city as city     
   		,ccare.postcode as postcode    
-  		,ccare.latitude || "," || ccare.longitude as location
+  		,ccare.latitude || "," || ccare.longitude as concat_location
+	  	,ccare.location as location
   	FROM transform_batchdata.childcarecentre ccare
   	UNION ALL
   	SELECT
@@ -28,7 +29,8 @@ WITH users_liveability AS (
   		,hosp.address as address    
   		,hosp.city as city     
   		,hosp.postcode as postcode    
-  		,hosp.latitude || "," || hosp.longitude as location
+  		,hosp.latitude || "," || hosp.longitude as concat_location
+	  	,hosp.location as location
   	FROM transform_batchdata.hospitals hosp
   	UNION ALL 
   	SELECT
@@ -38,7 +40,8 @@ WITH users_liveability AS (
   		,rel.address as address    
   		,rel.suburb as city     
   		,rel.postcode as postcode    
-  		,rel.latitude || "," || rel.longitude as location
+  		,rel.latitude || "," || rel.longitude as concat_location
+	  	,hosp.location as location
   	FROM transform_batchdata.religiousorganizations rel 
   	UNION ALL 
   	SELECT
@@ -48,7 +51,8 @@ WITH users_liveability AS (
   		,res.address as address    
   		,res.city as city     
   		,res.postcode as postcode    
-  		,res.latitude || "," || res.longitude as location
+  		,res.latitude || "," || res.longitude as concat_location
+	  	,res.location as location
   	FROM transform_batchdata.restaurants res 
   	UNION ALL 
   	SELECT
@@ -58,7 +62,8 @@ WITH users_liveability AS (
   		,sch.address as address    
   		,sch.city as city     
   		,sch.postcode as postcode    
-  		,sch.latitude || "," || sch.longitude as location 
+  		,sch.latitude || "," || sch.longitude as concat_location
+	  	,sch.location as location
   	FROM transform_batchdata.schools sch
   	UNION ALL  
   	SELECT
@@ -68,7 +73,8 @@ WITH users_liveability AS (
   		,shop.address as adress
   		,shop.city as city
   		,shop.postcode as postcode
-  		,shop.latitude || "," || shop.longitude as location
+  		,shop.latitude || "," || shop.longitude as concat_location
+	  	,shop.location as location
   	FROM transform_batchdata.shoppingcentre shop
   	UNION ALL 
   	SELECT
@@ -78,7 +84,8 @@ WITH users_liveability AS (
   		,sport.address as adress
   		,sport.city as city
   		,sport.postcode as postcode
-  		,sport.latitude || "," || sport.longitude as location
+  		,sport.latitude || "," || sport.longitude as concat_location
+	  	,sport.location as location
   	FROM transform_batchdata.sportsclubs sport
   
   )
