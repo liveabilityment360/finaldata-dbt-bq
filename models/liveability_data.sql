@@ -12,13 +12,14 @@ WITH final_liveability AS (
   )
 
   SELECT ulive.name
-		,ulive.category 
+	,ulive.category 
         ,ulive.cat_colour
         ,ulive.address
         ,ulive.city
-		,ulive.postcode
+	,ulive.postcode
+	,ulive.concat_location
         ,ulive.location
-		,uloc.new_geo
+	,uloc.new_geo
   FROM {{ref('user_liveability')}} ulive
   LEFT JOIN user_location uloc
   ON ulive.postcode = uloc.new_postcode
