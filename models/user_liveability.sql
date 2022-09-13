@@ -7,7 +7,7 @@ WITH users_liveability AS (
   	      ,RANK() over (
   		   ORDER BY ui2.created_date DESC
   		   ) AS rank_no2 
-  	FROM `liveability.user_activity` ui2
+  	FROM `liveability.user_activity_sample` ui2
   )
   
   SELECT * FROM (
